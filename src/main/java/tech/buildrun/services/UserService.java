@@ -18,6 +18,7 @@ public class UserService {
     public UserDTO createUser(UserDTO userDTO) {
         UserEntity userEntity = UserMapper.toEntity(userDTO);
         UserEntity.persist(userEntity);
+
         return UserMapper.toDTO(userEntity);
     }
 
@@ -42,12 +43,15 @@ public class UserService {
 
     public UserDTO findById(UUID userId) {
         UserEntity user = findByIdEntity(userId);
+
         return UserMapper.toDTO(user);
     }
 
     private UserEntity findByIdEntity(UUID userId) {
         Optional<UserEntity> userOptional = UserEntity.findByIdOptional(userId);
+
         if (userOptional.isEmpty()) throw new WebApplicationException("User not found", 404);
+
         return userOptional.get();
     }
 
@@ -61,7 +65,10 @@ public class UserService {
         UserEntity user = UserEntity.findById(userId);
         CourseEntity course = CourseEntity.findById(courseId);
 
-        if (user == null || course == null) throw new WebApplicationException("User or Course not found", 404);
+        if (user == null) throw new WebApplicationException("User not found", 404);
+        if (course == null) throw new WebApplicationException("Course not found", 404);
+
+        if (user.course != null) throw new WebApplicationException("User is already assigned to a course", 400);
 
         user.course = course;
     }

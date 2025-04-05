@@ -17,6 +17,7 @@ public class CourseService {
     public CourseDTO createCourse(CourseDTO courseDTO) {
         CourseEntity entity = CourseMapper.toEntity(courseDTO);
         CourseEntity.persist(entity);
+
         return CourseMapper.toDTO(entity);
     }
 
@@ -35,19 +36,19 @@ public class CourseService {
     public List<CourseDTO> findAll(Integer page, Integer pageSize) {
         List<CourseEntity> courses = CourseEntity.findAll().page(page, pageSize).list();
 
-        if (courses == null) throw new WebApplicationException("Courses not found", 404);
-
         return courses.stream().map(CourseMapper::toDTO).collect(Collectors.toList());
     }
 
     public CourseDTO findById(UUID courseId) {
         CourseEntity course = findByIdEntity(courseId);
+
         return CourseMapper.toDTO(course);
     }
 
     private CourseEntity findByIdEntity(UUID courseId) {
         Optional<CourseEntity> courseOptional = CourseEntity.findByIdOptional(courseId);
         if (courseOptional.isEmpty()) throw new WebApplicationException("Course not found", 404);
+
         return courseOptional.get();
     }
 

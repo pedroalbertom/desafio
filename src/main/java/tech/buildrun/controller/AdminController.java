@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import tech.buildrun.entity.AdminEntity;
+import tech.buildrun.dto.AdminDTO;
 import tech.buildrun.services.AdminService;
 
 import java.util.Map;
@@ -22,28 +22,29 @@ public class AdminController {
     }
 
     @GET
-    public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page, @QueryParam("size") @DefaultValue("10") Integer size) {
+    public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page,
+                            @QueryParam("size") @DefaultValue("10") Integer size) {
         var admins = adminService.findAll(page, size);
         return Response.ok(admins).build();
     }
 
-    @Path("/{id}")
     @GET
+    @Path("/{id}")
     public Response findOne(@PathParam("id") UUID adminId) {
         return Response.ok(adminService.findById(adminId)).build();
     }
 
     @POST
     @Transactional
-    public Response createAdmin(AdminEntity adminEntity) {
-        return Response.ok(adminService.createAdmin(adminEntity)).build();
+    public Response createAdmin(AdminDTO adminDTO) {
+        return Response.ok(adminService.createAdmin(adminDTO)).build();
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateAdmin(@PathParam("id") UUID adminId, AdminEntity adminEntity) {
-        return Response.ok(adminService.updateAdmin(adminId, adminEntity)).build();
+    public Response updateAdmin(@PathParam("id") UUID adminId, AdminDTO adminDTO) {
+        return Response.ok(adminService.updateAdmin(adminId, adminDTO)).build();
     }
 
     @DELETE
@@ -60,9 +61,14 @@ public class AdminController {
         String email = loginData.get("email");
         String password = loginData.get("password");
 
-        AdminEntity admin = adminService.login(email, password);
+        AdminDTO admin = adminService.login(email, password);
 
-        return Response.ok(Map.of("message", "Login realizado com sucesso!", "admin", admin.email)).build();
+        System.out.println(admin.getName());
+
+        return Response.ok(Map.of(
+                "message", "Login realizado com sucesso!",
+                "admin", Map.of("name", admin.getName(), "email", admin.getEmail())
+        )).build();
     }
 
     @POST
@@ -72,3 +78,5 @@ public class AdminController {
         return Response.ok(Map.of("message", "Logout realizado com sucesso!")).build();
     }
 }
+
+
