@@ -1,7 +1,6 @@
 package tech.buildrun.services;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
 import tech.buildrun.dto.CourseDTO;
 import tech.buildrun.entity.CourseEntity;

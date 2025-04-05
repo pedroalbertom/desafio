@@ -4,7 +4,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
 import tech.buildrun.dto.UserDTO;
-import tech.buildrun.entity.AdminEntity;
 import tech.buildrun.entity.CourseEntity;
 import tech.buildrun.entity.UserEntity;
 import tech.buildrun.mapper.UserMapper;
