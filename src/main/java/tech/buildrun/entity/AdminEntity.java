@@ -6,14 +6,15 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_users")
-public class UserEntity extends PanacheEntityBase {
+@Table(name = "tb_admins")
+public class AdminEntity extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    public UUID userId;
+    public UUID adminId;
 
     public String name;
     public String email;
+    public String password;
 
 }

@@ -17,7 +17,7 @@ public class UserService {
     public UserEntity updateUser(UUID userId, UserEntity userEntity) {
         var user = findById(userId);
 
-        user.username = userEntity.username;
+        user.name = userEntity.name;
         user.email = userEntity.email;
 
         UserEntity.persist(user);
