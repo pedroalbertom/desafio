@@ -1,0 +1,37 @@
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-desafio
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: desafio
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - quarkus-net
+
+  app:
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: quarkus-app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:mysql://mysql-desafio:3306/desafio
+      QUARKUS_DATASOURCE_USERNAME: root
+      QUARKUS_DATASOURCE_PASSWORD: root
+    networks:
+      - quarkus-net
+
+volumes:
+  mysql_data:
+
+networks:
+  quarkus-net:
+    driver: bridge
