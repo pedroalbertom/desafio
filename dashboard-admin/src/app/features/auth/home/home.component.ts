@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,10 @@ export class HomeComponent {
   email = '';
   password = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router  
+  ) {}
 
   onSubmit() {
     const payload = {
@@ -36,6 +40,7 @@ export class HomeComponent {
       .subscribe({
         next: (res) => {
           console.log('Login bem-sucedido:', res);
+          this.router.navigate(['dashboard'])
         },
         error: (err) => {
           console.error('Erro no login:', err);
