@@ -1,5 +1,6 @@
 package tech.buildrun.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
@@ -16,7 +17,9 @@ public class UserEntity extends PanacheEntityBase {
     public String name;
     public String email;
 
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "course_id")
     public CourseEntity course;
 
 }

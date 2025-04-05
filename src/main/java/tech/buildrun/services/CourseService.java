@@ -3,68 +3,56 @@ package tech.buildrun.services;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
+import tech.buildrun.dto.CourseDTO;
 import tech.buildrun.entity.CourseEntity;
+import tech.buildrun.mapper.CourseMapper;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class CourseService {
-    public CourseEntity createCourse(CourseEntity courseEntity) {
-
-        CourseEntity.persist(courseEntity);
-
-        return courseEntity;
+    public CourseDTO createCourse(CourseDTO courseDTO) {
+        CourseEntity entity = CourseMapper.toEntity(courseDTO);
+        CourseEntity.persist(entity);
+        return CourseMapper.toDTO(entity);
     }
 
-    public CourseEntity updateCourse(UUID courseId, CourseEntity courseEntity) {
-        var course = findById(courseId);
+    public CourseDTO updateCourse(UUID courseId, CourseDTO courseDTO) {
+        var course = findByIdEntity(courseId);
 
-        if (course == null) throw new WebApplicationException("Course not found", 404);
-
-        course.name = courseEntity.name;
-        course.description = courseEntity.description;
-        course.durationInHours = courseEntity.durationInHours;
+        course.name = courseDTO.name;
+        course.description = courseDTO.description;
+        course.durationInHours = courseDTO.durationInHours;
 
         CourseEntity.persist(course);
 
-        return course;
+        return CourseMapper.toDTO(course);
     }
 
-    public List<CourseEntity> findAll(Integer page, Integer pageSize) {
+    public List<CourseDTO> findAll(Integer page, Integer pageSize) {
         List<CourseEntity> courses = CourseEntity.findAll().page(page, pageSize).list();
 
         if (courses == null) throw new WebApplicationException("Courses not found", 404);
 
-        return courses;
+        return courses.stream().map(CourseMapper::toDTO).collect(Collectors.toList());
     }
 
-    public CourseEntity findById(UUID courseId) {
+    public CourseDTO findById(UUID courseId) {
+        CourseEntity course = findByIdEntity(courseId);
+        return CourseMapper.toDTO(course);
+    }
+
+    private CourseEntity findByIdEntity(UUID courseId) {
         Optional<CourseEntity> courseOptional = CourseEntity.findByIdOptional(courseId);
-
         if (courseOptional.isEmpty()) throw new WebApplicationException("Course not found", 404);
-
         return courseOptional.get();
     }
 
     public void deleteById(UUID courseId) {
-        var course = findById(courseId);
-
-        if (course == null) throw new WebApplicationException("Course not found", 404);
-
+        var course = findByIdEntity(courseId);
         CourseEntity.deleteById(course.courseId);
     }
-
-    @Transactional
-    public CourseEntity getCourseWithUsers(UUID courseId) {
-        CourseEntity course = CourseEntity.findById(courseId);
-
-        if (course == null) throw new WebApplicationException("Course not found", 404);
-
-        course.users.size();
-
-        return course;
-    }
-
 }

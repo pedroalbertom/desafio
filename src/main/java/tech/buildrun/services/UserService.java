@@ -3,61 +3,61 @@ package tech.buildrun.services;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
+import tech.buildrun.dto.UserDTO;
 import tech.buildrun.entity.CourseEntity;
 import tech.buildrun.entity.UserEntity;
+import tech.buildrun.mapper.UserMapper;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class UserService {
-    public UserEntity createUser(UserEntity userEntity) {
-
+    public UserDTO createUser(UserDTO userDTO) {
+        UserEntity userEntity = UserMapper.toEntity(userDTO);
         UserEntity.persist(userEntity);
-
-        return userEntity;
+        return UserMapper.toDTO(userEntity);
     }
 
-    public UserEntity updateUser(UUID userId, UserEntity userEntity) {
-        var user = findById(userId);
+    public UserDTO updateUser(UUID userId, UserDTO userDTO) {
+        var user = findByIdEntity(userId);
 
-        if (user == null) throw new WebApplicationException("User not found", 404);
-
-        user.name = userEntity.name;
-        user.email = userEntity.email;
+        user.name = userDTO.name;
+        user.email = userDTO.email;
 
         UserEntity.persist(user);
 
-        return user;
+        return UserMapper.toDTO(user);
     }
 
-    public List<UserEntity> findAll(Integer page, Integer pageSize) {
+    public List<UserDTO> findAll(Integer page, Integer pageSize) {
         List<UserEntity> users = UserEntity.findAll().page(page, pageSize).list();
 
         if (users == null) throw new WebApplicationException("Users not found", 404);
 
-        return users;
+        return users.stream().map(UserMapper::toDTO).collect(Collectors.toList());
     }
 
-    public UserEntity findById(UUID userId) {
+    public UserDTO findById(UUID userId) {
+        UserEntity user = findByIdEntity(userId);
+        return UserMapper.toDTO(user);
+    }
+
+    private UserEntity findByIdEntity(UUID userId) {
         Optional<UserEntity> userOptional = UserEntity.findByIdOptional(userId);
-
         if (userOptional.isEmpty()) throw new WebApplicationException("User not found", 404);
-
         return userOptional.get();
     }
 
     public void deleteById(UUID userId) {
-        var user = findById(userId);
-
-        if (user == null) throw new WebApplicationException("User not found", 404);
-
+        var user = findByIdEntity(userId);
         UserEntity.deleteById(user.userId);
     }
 
     @Transactional
-    public void assignUserToCourse(Long userId, Long courseId) {
+    public void assignUserToCourse(UUID userId, UUID courseId) {
         UserEntity user = UserEntity.findById(userId);
         CourseEntity course = CourseEntity.findById(courseId);
 

@@ -4,9 +4,10 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import tech.buildrun.entity.UserEntity;
+import tech.buildrun.dto.UserDTO;
 import tech.buildrun.services.UserService;
 
+import java.util.List;
 import java.util.UUID;
 
 @Path("/users")
@@ -21,42 +22,48 @@ public class UserController {
     }
 
     @GET
-    public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page, @QueryParam("size") @DefaultValue("10") Integer size) {
-        var users = userService.findAll(page, size);
+    public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page,
+                            @QueryParam("size") @DefaultValue("10") Integer size) {
+
+        List<UserDTO> users = userService.findAll(page, size);
         return Response.ok(users).build();
     }
 
-    @Path("/{id}")
     @GET
-    public Response findOne(@PathParam("id") UUID userId) {
-        return Response.ok(userService.findById(userId)).build();
+    @Path("/{id}")
+    public Response findById(@PathParam("id") UUID userId) {
+        UserDTO user = userService.findById(userId);
+        return Response.ok(user).build();
     }
 
     @POST
     @Transactional
-    public Response createUser(UserEntity userEntity) {
-        return Response.ok(userService.createUser(userEntity)).build();
+    public Response create(UserDTO userDTO) {
+        UserDTO created = userService.createUser(userDTO);
+        return Response.status(Response.Status.CREATED).entity(created).build();
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateUser(@PathParam("id") UUID userId, UserEntity userEntity) {
-        return Response.ok(userService.updateUser(userId, userEntity)).build();
+    public Response update(@PathParam("id") UUID userId, UserDTO userDTO) {
+        UserDTO updated = userService.updateUser(userId, userDTO);
+        return Response.ok(updated).build();
     }
 
     @DELETE
     @Path("/{id}")
     @Transactional
-    public Response deleteById(@PathParam("id") UUID userId) {
+    public Response delete(@PathParam("id") UUID userId) {
         userService.deleteById(userId);
         return Response.noContent().build();
     }
 
     @PUT
-    @Path("/{userId}/course/{courseId}")
-    public Response assignCourse(@PathParam("userId") Long userId, @PathParam("courseId") Long courseId) {
+    @Path("/{userId}/courses/{courseId}")
+    @Transactional
+    public Response assignCourse(@PathParam("userId") UUID userId, @PathParam("courseId") UUID courseId) {
         userService.assignUserToCourse(userId, courseId);
-        return Response.ok().build();
+        return Response.noContent().build();
     }
 }
