@@ -14,8 +14,13 @@ import java.util.UUID;
 public class AdminService {
 
     public AdminDTO createAdmin(AdminDTO adminDTO) {
+        boolean emailExists = AdminEntity.find("email", adminDTO.getEmail()).firstResult() != null;
+
+        if (emailExists) throw new WebApplicationException("E-mail já está em uso", 409);
+
         AdminEntity entity = AdminMapper.toEntity(adminDTO);
         AdminEntity.persist(entity);
+
         return AdminMapper.toDTO(entity);
     }
 
@@ -27,11 +32,13 @@ public class AdminService {
         admin.password = adminDTO.getPassword();
 
         AdminEntity.persist(admin);
+
         return AdminMapper.toDTO(admin);
     }
 
     public List<AdminDTO> findAll(Integer page, Integer pageSize) {
         List<AdminEntity> admins = AdminEntity.findAll().page(page, pageSize).list();
+
         return admins.stream().map(AdminMapper::toDTO).toList();
     }
 

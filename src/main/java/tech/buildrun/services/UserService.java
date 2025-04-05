@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
 import tech.buildrun.dto.UserDTO;
+import tech.buildrun.entity.AdminEntity;
 import tech.buildrun.entity.CourseEntity;
 import tech.buildrun.entity.UserEntity;
 import tech.buildrun.mapper.UserMapper;
@@ -16,6 +17,10 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class UserService {
     public UserDTO createUser(UserDTO userDTO) {
+        boolean emailExists = UserEntity.find("email", userDTO.email).firstResult() != null;
+
+        if (emailExists) throw new WebApplicationException("E-mail já está em uso", 409);
+
         UserEntity userEntity = UserMapper.toEntity(userDTO);
         UserEntity.persist(userEntity);
 

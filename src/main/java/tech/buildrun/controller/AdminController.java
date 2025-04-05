@@ -1,6 +1,7 @@
 package tech.buildrun.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -36,14 +37,14 @@ public class AdminController {
 
     @POST
     @Transactional
-    public Response createAdmin(AdminDTO adminDTO) {
+    public Response createAdmin(@Valid AdminDTO adminDTO) {
         return Response.ok(adminService.createAdmin(adminDTO)).build();
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateAdmin(@PathParam("id") UUID adminId, AdminDTO adminDTO) {
+    public Response updateAdmin(@PathParam("id") UUID adminId,@Valid AdminDTO adminDTO) {
         return Response.ok(adminService.updateAdmin(adminId, adminDTO)).build();
     }
 

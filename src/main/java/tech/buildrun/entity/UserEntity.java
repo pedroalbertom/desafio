@@ -9,13 +9,15 @@ import java.util.UUID;
 @Entity
 @Table(name = "tb_users")
 public class UserEntity extends PanacheEntityBase {
+    @Column(nullable = false)
+    public String name;
+
+    @Column(unique = true, nullable = false)
+    public String email;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID userId;
-
-    public String name;
-    public String email;
 
     @JsonIgnore
     @ManyToOne
