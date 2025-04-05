@@ -1,0 +1,563 @@
+type: collection.insomnia.rest/5.0
+name: Desafio
+meta:
+  id: wrk_757c1e64de564c19a9744a687c94acd3
+  created: 1743810820127
+  modified: 1743810820127
+collection:
+  - name: Users
+    meta:
+      id: fld_6245e08d9d734054a1c684e4a682b2bd
+      created: 1743810837605
+      modified: 1743810837605
+      sortKey: -1743810837605
+    children:
+      - url: http://localhost:8080/users
+        name: Find All
+        meta:
+          id: req_7ed23068bcaa424ca0f1f6f805816c1b
+          created: 1743810842529
+          modified: 1743815309458
+          isPrivate: false
+          sortKey: -1743810844940
+        method: GET
+        body:
+          mimeType: application/json
+        parameters:
+          - id: pair_bd89d5c012694711910fdcb7d05e98c9
+            name: page
+            value: "0"
+            disabled: false
+          - id: pair_1222a993fa9e4341890767704c914f82
+            name: size
+            value: "10"
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/users
+        name: Create
+        meta:
+          id: req_032af1e3d1d74652b84ea40911cfcf2b
+          created: 1743814410846
+          modified: 1743860856884
+          isPrivate: false
+          sortKey: -1738699998966.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"lucas",
+            	"email":"lucas@gmail.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/users/68733350-dbab-445c-a20d-dfde544c1b93
+        name: Find By Id
+        meta:
+          id: req_5d3f596163704a3188cb3c6ca4b2a3e4
+          created: 1743815090063
+          modified: 1743860849645
+          isPrivate: false
+          sortKey: -1741255421953.25
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/users/68733350-dbab-445c-a20d-dfde544c1b93
+        name: Update
+        meta:
+          id: req_1ae3d3318cc04d8990de2fd9f88bec72
+          created: 1743816270045
+          modified: 1743860865343
+          isPrivate: false
+          sortKey: -1736144575979.75
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"pedra",
+            	"email":"pedrialbertompontes@gmail.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/users/b4f31d05-6f8d-428a-9daa-80eb6aaaeeee
+        name: Delete
+        meta:
+          id: req_f5b6f41b7a07493fbf6493b6d5d93787
+          created: 1743816841304
+          modified: 1743816853777
+          isPrivate: false
+          sortKey: -1734866864486.375
+        method: DELETE
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/users/9555961a-babe-49e6-aee2-63589aeccf2d/courses/33f52b07-11ed-412e-ac42-c3d04dcb3687
+        name: Assign
+        meta:
+          id: req_c69f1ed4dc96472f9d62cba525d4e562
+          created: 1743856900545
+          modified: 1743860870706
+          isPrivate: false
+          sortKey: -1735505720233.0625
+        method: PUT
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/users/9555961a-babe-49e6-aee2-63589aeccf2d/courses/unassign
+        name: Unassign
+        meta:
+          id: req_372af8d4d86a480abb40cff0fee600fc
+          created: 1743858367729
+          modified: 1743858424381
+          isPrivate: false
+          sortKey: -1735186292359.7188
+        method: PUT
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Admins
+    meta:
+      id: fld_05a915df49f344eabbb99617a9cc18dd
+      created: 1743854691396
+      modified: 1743854691396
+      sortKey: -1738699855299.5
+    children:
+      - url: http://localhost:8080/admins
+        name: Find All
+        meta:
+          id: req_c9f74829c784407ab15feafeb49be219
+          created: 1743854691397
+          modified: 1743854699386
+          isPrivate: false
+          sortKey: -1743810844940
+        method: GET
+        body:
+          mimeType: application/json
+        parameters:
+          - id: pair_bd89d5c012694711910fdcb7d05e98c9
+            name: page
+            value: "0"
+            disabled: false
+          - id: pair_1222a993fa9e4341890767704c914f82
+            name: size
+            value: "10"
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/admins
+        name: Create
+        meta:
+          id: req_162fb3479b6b4de5a55860a452018569
+          created: 1743854691398
+          modified: 1743861564930
+          isPrivate: false
+          sortKey: -1738699998966.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"pedro",
+            	"email":"pedroalbertompontes@gmail.com",
+            	"password":"12345678"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/admins/033669dd-8361-4f7f-9cd8-cf8dd76b38eb
+        name: Find By Id
+        meta:
+          id: req_5e90242f3f3e452ca4591674c41fb206
+          created: 1743854691399
+          modified: 1743860907453
+          isPrivate: false
+          sortKey: -1741255421953.25
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/admins/b4f31d05-6f8d-428a-9daa-80eb6aaaeeee
+        name: Update
+        meta:
+          id: req_2cdf4cdb2e074b0eb3c91bcc08bc9bd1
+          created: 1743854691400
+          modified: 1743855515314
+          isPrivate: false
+          sortKey: -1736144575979.75
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"pedro",
+            	"email":"pedroalbertompontes@gmail.com",
+            	"password":"12345678"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/admins/033669dd-8361-4f7f-9cd8-cf8dd76b38eb
+        name: Delete
+        meta:
+          id: req_1738e3fc1d66417b92b905a794cbd2f9
+          created: 1743854691401
+          modified: 1743861273378
+          isPrivate: false
+          sortKey: -1734866864486.375
+        method: DELETE
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/admins/login
+        name: Login
+        meta:
+          id: req_2cac59db70b94ed583c70bf8d8447315
+          created: 1743854721290
+          modified: 1743854843238
+          isPrivate: false
+          sortKey: -1737422287473.125
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"pedroalbertompontes@gmail.com",
+            	"password":"12345678"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/admins/logout
+        name: Logout
+        meta:
+          id: req_e249ac46fa32423fa9eacd04a88035cc
+          created: 1743854728175
+          modified: 1743855509264
+          isPrivate: false
+          sortKey: -1736783431726.4375
+        method: POST
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Courses
+    meta:
+      id: fld_0ad67b838bee46d99f3c49584716220b
+      created: 1743855441680
+      modified: 1743855441680
+      sortKey: -1741255346452.25
+    children:
+      - url: http://localhost:8080/courses
+        name: Find All
+        meta:
+          id: req_e9b8ed42ed1a400e9a1c4ac843f634a2
+          created: 1743855441681
+          modified: 1743855445705
+          isPrivate: false
+          sortKey: -1743810844940
+        method: GET
+        body:
+          mimeType: application/json
+        parameters:
+          - id: pair_bd89d5c012694711910fdcb7d05e98c9
+            name: page
+            value: "0"
+            disabled: false
+          - id: pair_1222a993fa9e4341890767704c914f82
+            name: size
+            value: "10"
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/courses
+        name: Create
+        meta:
+          id: req_a6ea3fa56e1346fcb1b040e195ea064a
+          created: 1743855441682
+          modified: 1743864409703
+          isPrivate: false
+          sortKey: -1738699998966.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"python",
+            	"description":"curso de python",
+            	"durationInHours": 10
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/courses/33f52b07-11ed-412e-ac42-c3d04dcb3687
+        name: Find By Id
+        meta:
+          id: req_351deee547bd4851861b6fdfb48c7443
+          created: 1743855441684
+          modified: 1743856819548
+          isPrivate: false
+          sortKey: -1741255421953.25
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/courses/33f52b07-11ed-412e-ac42-c3d04dcb3687
+        name: Update
+        meta:
+          id: req_173f0544fe794855bdaf7adb9058fd46
+          created: 1743855441685
+          modified: 1743856827183
+          isPrivate: false
+          sortKey: -1736144575979.75
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"pedro",
+            	"description":"pedroalbertompontes@gmail.com",
+            	"durationInHours": 10
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/courses/b4f31d05-6f8d-428a-9daa-80eb6aaaeeee
+        name: Delete
+        meta:
+          id: req_56ece970878a4730be2a6a2623bccb6a
+          created: 1743855441686
+          modified: 1743855455901
+          isPrivate: false
+          sortKey: -1734866864486.375
+        method: DELETE
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_cebac824f82fd21944e28ef9e3aba435c593500e
+    created: 1743810820134
+    modified: 1743810820134
+environments:
+  name: Base Environment
+  meta:
+    id: env_cebac824f82fd21944e28ef9e3aba435c593500e
+    created: 1743810820133
+    modified: 1743812366780
+    isPrivate: false
