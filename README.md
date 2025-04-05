@@ -39,7 +39,7 @@ Isso irá:
 
 ### 5. Acesse no navegador
 
-- Frontend: [http://localhost:3000](http://localhost:3000)
+- Frontend: [http://localhost:4200](http://localhost:3000)
 - Backend (API): [http://localhost:8080](http://localhost:8080)
 
 ---
