@@ -11,7 +11,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http.post(`${this.baseUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('admin', JSON.stringify(res.admin));
       })
     );
   }
@@ -26,5 +26,10 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  getAdmin() {
+    const admin = localStorage.getItem('admin');
+    return admin ? JSON.parse(admin) : null;
   }
 }

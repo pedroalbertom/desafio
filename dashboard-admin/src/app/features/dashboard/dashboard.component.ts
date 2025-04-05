@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../core/services/auth.service'; // ajuste o path se necessário
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +13,12 @@ export class DashboardComponent implements OnInit {
   adminName = '';
   adminEmail = '';
 
-  ngOnInit() {
-    const adminData = localStorage.getItem('admin');
+  constructor(private authService: AuthService) {}
 
-    if (adminData) {
-      const admin = JSON.parse(adminData);
+  ngOnInit() {
+    const admin = this.authService.getAdmin();
+
+    if (admin) {
       this.adminName = admin.name;
       this.adminEmail = admin.email;
     }
