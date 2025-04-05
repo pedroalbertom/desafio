@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginResponse } from '../../../models/login-response.model';
+
 
 @Component({
   selector: 'app-home',
@@ -35,16 +37,18 @@ export class HomeComponent {
       email: this.email,
       password: this.password
     };
-
-    this.http.post('http://localhost:8080/admins/login', payload)
+  
+    this.http.post<LoginResponse>('http://localhost:8080/admins/login', payload)
       .subscribe({
         next: (res) => {
-          console.log('Login bem-sucedido:', res);
-          this.router.navigate(['dashboard'])
+          localStorage.setItem('admin', JSON.stringify(res.admin));
+          this.router.navigate(['dashboard']);
         },
         error: (err) => {
           console.error('Erro no login:', err);
         }
       });
   }
+  
 }
+

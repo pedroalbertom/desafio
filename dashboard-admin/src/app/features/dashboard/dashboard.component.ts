@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,4 +8,17 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {}
+export class DashboardComponent implements OnInit {
+  adminName = '';
+  adminEmail = '';
+
+  ngOnInit() {
+    const adminData = localStorage.getItem('admin');
+
+    if (adminData) {
+      const admin = JSON.parse(adminData);
+      this.adminName = admin.name;
+      this.adminEmail = admin.email;
+    }
+  }
+}
