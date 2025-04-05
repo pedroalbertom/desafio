@@ -5,6 +5,8 @@ import { CourseService } from '../../core/services/course.service';
 import { Course } from '../../models/course.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { RegisterStudentDialogComponent } from '../../shared/modals/register-student-dialog/register-student-dialog.component';
 
 
 @Component({
@@ -13,7 +15,8 @@ import { MatDividerModule } from '@angular/material/divider';
   imports: [
     CommonModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
@@ -25,7 +28,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -38,6 +42,16 @@ export class DashboardComponent implements OnInit {
     this.courseService.getCourses().subscribe({
       next: (res: any) => this.courses = res,
       error: (err: any) => console.error('Erro ao carregar cursos:', err)
+    });
+  }
+
+  openRegisterStudentModal() {
+    const dialogRef = this.dialog.open(RegisterStudentDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Aluno registrado:', result);
+      }
     });
   }
 }

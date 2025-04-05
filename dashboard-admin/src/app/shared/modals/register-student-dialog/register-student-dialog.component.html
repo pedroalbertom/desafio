@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Registrar novo aluno</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="student.name" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="student.email" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button color="primary" (click)="register()">Registrar</button>
+</mat-dialog-actions>

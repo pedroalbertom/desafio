@@ -1,6 +1,10 @@
 <div class="page-container">
   <h2>Bem-vindo, {{ adminName }}!</h2>
 
+  <button mat-raised-button color="primary" (click)="openRegisterStudentModal()">
+    Registrar novo aluno
+  </button>
+
   <h3 style="margin-top: 2rem;">Cursos disponíveis:</h3>
 
   <div class="courses-container">
