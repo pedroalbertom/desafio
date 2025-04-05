@@ -1,6 +1,5 @@
 package tech.buildrun.controller;
 
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -37,5 +36,20 @@ public class UserController {
     @Transactional
     public Response createUser(UserEntity userEntity) {
         return Response.ok(userService.createUser(userEntity)).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Response updateUser(@PathParam("id") UUID userId, UserEntity userEntity) {
+        return Response.ok(userService.updateUser(userId, userEntity)).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response deleteById(@PathParam("id") UUID userId) {
+        userService.deleteById(userId);
+        return Response.noContent().build();
     }
 }
