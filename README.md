@@ -20,7 +20,13 @@ cd desafio
 
 > Certifique-se de estar no mesmo diretório onde está o arquivo `docker-compose.yml`.
 
-### 3. Suba os containers
+### 3. Builda o .jar em ./target
+
+```bash
+mvn clean package
+```
+
+### 4. Suba os containers
 
 ```bash
 docker-compose up --build
