@@ -1,18 +1,45 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [],
+  imports:[
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  name = "pedro"
-  idButton = "djdjdj"
-  deveMostrarTitulo = false
+  email = '';
+  password = '';
 
-  submit(event: any){
-    console.log(event)
+  constructor(private http: HttpClient) {}
+
+  onSubmit() {
+    const payload = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post('http://localhost:8080/admins/login', payload)
+      .subscribe({
+        next: (res) => {
+          console.log('Login bem-sucedido:', res);
+        },
+        error: (err) => {
+          console.error('Erro no login:', err);
+        }
+      });
   }
 }
