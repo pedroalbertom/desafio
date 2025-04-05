@@ -6,7 +6,7 @@ import { Course } from '../../models/models.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { RegisterStudentDialogComponent } from '../../shared/modals/register-student-dialog/register-student-dialog.component';
+import { StudentManagementDialogComponent } from '../../shared/modals/student-management-dialog/student-management-dialog.component';
 
 
 @Component({
@@ -45,13 +45,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  openRegisterStudentModal() {
-    const dialogRef = this.dialog.open(RegisterStudentDialogComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Aluno registrado:', result);
-      }
+  openStudentManagementModal() {
+    this.dialog.open(StudentManagementDialogComponent, {
+      width: '700px',
+      height: '80vh'
     });
   }
+  
 }

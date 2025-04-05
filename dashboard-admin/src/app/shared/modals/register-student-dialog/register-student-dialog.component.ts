@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+
+import { UserService } from '../../../core/services/user.service';
+import { User } from '../../../models/models.model';
 
 @Component({
   selector: 'app-register-student-dialog',
@@ -20,13 +23,50 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './register-student-dialog.component.html',
 })
 export class RegisterStudentDialogComponent {
-  student = { name: '', email: '' };
+  private userService = inject(UserService);
+  private dialogRef = inject(MatDialogRef<RegisterStudentDialogComponent>);
 
-  constructor(private dialogRef: MatDialogRef<RegisterStudentDialogComponent>) {}
+  student: User = {
+    userId: '',
+    name: '',
+    email: '',
+    courseId: ''
+  };
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: User | null) {
+    if (data) {
+      this.student = { ...data };
+    }
+  }
 
   register() {
-    // Aqui você chamaria um serviço pra enviar o aluno à API
-    console.log('Aluno registrado:', this.student);
-    this.dialogRef.close(this.student);
+    if (!this.student.name || !this.student.email) {
+      alert('Preencha nome e e-mail');
+      return;
+    }
+
+    if (this.student.userId) {
+      // Edição
+      this.userService.updateUser(this.student.userId, this.student).subscribe({
+        next: (res) => {
+          console.log('Aluno atualizado:', res);
+          this.dialogRef.close(true);
+        },
+        error: (err) => console.error('Erro ao atualizar aluno:', err)
+      });
+    } else {
+      // Criação
+      this.userService.createUser(this.student).subscribe({
+        next: (res) => {
+          console.log('Aluno criado:', res);
+          this.dialogRef.close(true);
+        },
+        error: (err) => console.error('Erro ao criar aluno:', err)
+      });
+    }
+  }
+
+  cancelar() {
+    this.dialogRef.close();
   }
 }
