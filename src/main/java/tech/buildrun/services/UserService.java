@@ -65,4 +65,15 @@ public class UserService {
 
         user.course = course;
     }
+
+    @Transactional
+    public void unassignUserFromCourse(UUID userId) {
+        UserEntity user = UserEntity.findById(userId);
+
+        if (user == null) throw new WebApplicationException("User not found", 404);
+
+        if (user.course == null) throw new WebApplicationException("User is not assigned to any course", 400);
+
+        user.course = null;
+    }
 }

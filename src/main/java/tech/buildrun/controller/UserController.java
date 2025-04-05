@@ -66,4 +66,12 @@ public class UserController {
         userService.assignUserToCourse(userId, courseId);
         return Response.noContent().build();
     }
+
+    @PUT
+    @Path("/{userId}/courses/unassign")
+    @Transactional
+    public Response unassignCourse(@PathParam("userId") UUID userId) {
+        userService.unassignUserFromCourse(userId);
+        return Response.noContent().build();
+    }
 }
