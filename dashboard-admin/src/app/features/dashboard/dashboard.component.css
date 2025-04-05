@@ -1,7 +1,22 @@
-.dashboard-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-  
+/* Centraliza o conteúdo da página */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Grade com 2 colunas fixas */
+.courses-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Card com espaçamento */
+.course-card {
+  padding: 1rem;
+}

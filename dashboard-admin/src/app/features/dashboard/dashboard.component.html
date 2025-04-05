@@ -1,4 +1,17 @@
-<div class="dashboard-container">
-    <h1>Bem-vindo ao Dashboard, {{adminName}}</h1>
+<div class="page-container">
+  <h2>Bem-vindo, {{ adminName }}!</h2>
+  <p>Email: {{ adminEmail }}</p>
+
+  <h3 style="margin-top: 2rem;">Cursos disponíveis:</h3>
+
+  <div class="courses-container">
+    <mat-card *ngFor="let course of courses" class="course-card">
+      <mat-card-header>
+        <mat-card-title>{{ course.name }}</mat-card-title>
+        <mat-card-subtitle>
+          {{ course.durationInHours }}h - {{ course.description }}
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
 </div>
-  
