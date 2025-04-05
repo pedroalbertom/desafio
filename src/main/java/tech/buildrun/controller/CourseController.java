@@ -1,6 +1,7 @@
 package tech.buildrun.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -38,7 +39,7 @@ public class CourseController {
 
     @POST
     @Transactional
-    public Response create(CourseDTO courseDTO) {
+    public Response create(@Valid CourseDTO courseDTO) {
         CourseDTO created = courseService.createCourse(courseDTO);
         return Response.status(Response.Status.CREATED).entity(created).build();
     }
@@ -46,7 +47,7 @@ public class CourseController {
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response update(@PathParam("id") UUID courseId, CourseDTO courseDTO) {
+    public Response update(@PathParam("id") UUID courseId, @Valid CourseDTO courseDTO) {
         CourseDTO updated = courseService.updateCourse(courseId, courseDTO);
         return Response.ok(updated).build();
     }
