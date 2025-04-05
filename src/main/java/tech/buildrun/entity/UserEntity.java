@@ -16,4 +16,7 @@ public class UserEntity extends PanacheEntityBase {
     public String name;
     public String email;
 
+    @ManyToOne
+    public CourseEntity course;
+
 }

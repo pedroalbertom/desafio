@@ -52,4 +52,11 @@ public class UserController {
         userService.deleteById(userId);
         return Response.noContent().build();
     }
+
+    @PUT
+    @Path("/{userId}/course/{courseId}")
+    public Response assignCourse(@PathParam("userId") Long userId, @PathParam("courseId") Long courseId) {
+        userService.assignUserToCourse(userId, courseId);
+        return Response.ok().build();
+    }
 }
