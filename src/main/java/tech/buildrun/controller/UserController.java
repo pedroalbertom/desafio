@@ -1,5 +1,7 @@
 package tech.buildrun.controller;
 
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -13,13 +15,20 @@ public class UserController {
 
     private final UserService userService;
 
+    @Inject
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @POST
-    public Response createUser(UserEntity user) {
+    @GET
+    public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page, @QueryParam("size") @DefaultValue("10") Integer size) {
+        var users = userService.findAll(page, size);
+        return Response.ok(users).build();
+    }
 
-        return Response.ok("Hello World!").build();
+    @POST
+    @Transactional
+    public Response createUser(UserEntity userEntity) {
+        return Response.ok(userService.createUser(userEntity)).build();
     }
 }
