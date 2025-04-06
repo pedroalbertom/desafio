@@ -17,6 +17,10 @@
 
   <h3>Cursos disponíveis:</h3>
 
+  <button mat-raised-button color="primary" (click)="openAdminManagementModal()">
+    Adicionar Cursos
+  </button>
+
   <div class="courses-container">
     <mat-card *ngFor="let course of courses" class="course-card" (click)="openCourseManagementModal(course)" style="cursor: pointer;">
       <mat-card-header>
