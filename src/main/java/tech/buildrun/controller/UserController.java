@@ -37,6 +37,13 @@ public class UserController {
         return Response.ok(user).build();
     }
 
+    @GET
+    @Path("/without-courses")
+    public Response findUsersWithoutCourses() {
+        List<UserDTO> users = userService.findUsersWithoutCourses();
+        return Response.ok(users).build();
+    }
+
     @POST
     @Transactional
     public Response create(@Valid UserDTO userDTO) {

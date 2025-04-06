@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,5 +24,9 @@ public class UserEntity extends PanacheEntityBase {
     @ManyToOne
     @JoinColumn(name = "course_id")
     public CourseEntity course;
+
+    public static List<UserEntity> findUsersWithoutCourses() {
+        return find("course IS NULL").list();
+    }
 
 }

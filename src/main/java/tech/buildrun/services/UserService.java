@@ -87,4 +87,10 @@ public class UserService {
 
         user.course = null;
     }
+
+    public List<UserDTO> findUsersWithoutCourses() {
+        List<UserEntity> users = UserEntity.findUsersWithoutCourses();
+        return users.stream().map(UserMapper::toDTO).collect(Collectors.toList());
+    }
+
 }
