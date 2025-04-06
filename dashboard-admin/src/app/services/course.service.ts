@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CourseService {
   private baseUrl = 'http://localhost:8080/courses';
+  private userUrl = 'http://localhost:8080/users';
 
   constructor(private http: HttpClient) {}
 
@@ -32,5 +33,15 @@ export class CourseService {
   // Remove um curso
   deleteCourse(courseId: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${courseId}`);
+  }
+
+  // Matricula um usuário em um curso
+  assignCourseToUser(userId: string, courseId: string): Observable<void> {
+    return this.http.put<void>(`${this.userUrl}/${userId}/courses/${courseId}`, {});
+  }
+
+  // Remove um usuário de um curso
+  unassignCourseFromUser(userId: string): Observable<void> {
+    return this.http.put<void>(`${this.userUrl}/${userId}/courses/unnasign`, {});
   }
 }

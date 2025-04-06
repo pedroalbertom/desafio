@@ -34,4 +34,10 @@ export class UserService {
   deleteUser(userId: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${userId}`);
   }
+
+  // Busca usuários sem cursos associados
+  getUsersWithoutCourses(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:8080/users/without-courses');
+  }
+  
 }

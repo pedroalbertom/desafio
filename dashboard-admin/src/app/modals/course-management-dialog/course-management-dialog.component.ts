@@ -1,0 +1,38 @@
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { Course } from '../../models/models.model';
+import { CourseService } from '../../services/course.service';
+import { User } from '../../models/models.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+@Component({
+  selector: 'app-course-management-dialog',
+  templateUrl: './course-management-dialog.component.html',
+  styleUrls: ['./course-management-dialog.component.css']
+})
+export class CourseManagementDialogComponent {
+  course: Course;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { course: Course },
+    private dialogRef: MatDialogRef<CourseManagementDialogComponent>,
+    private courseService: CourseService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {
+    this.course = data.course;
+  }
+
+  removeStudent(student: User): void {
+    this.courseService.unassignCourseFromUser(student.userId).subscribe({
+      next: () => {
+        this.course.users = this.course.users.filter(u => u.userId !== student.userId);
+        this.snackBar.open('Aluno removido com sucesso!', 'Fechar', { duration: 3000 });
+      },
+      error: (err) => {
+        console.error('Erro ao remover aluno:', err);
+        this.snackBar.open('Erro ao remover aluno.', 'Fechar', { duration: 3000 });
+      }
+    });
+  }
+}
