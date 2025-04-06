@@ -1,6 +1,16 @@
 # 🚀 desafio-fullstack
 
-Este é o repositório do projeto **desafio-fullstack**, uma aplicação fullstack dockerizada para fins de demonstração e desenvolvimento.
+Esse repositório foi criado para participar de um desafio técnico de uma vaga para desenvolvedor full-stack. A stack 
+utilizada foi Java v21.0.6, utilizando o framework quarkus v3.21.1 para a api, com hibernate e usando active record 
+pattern por ser uma api mais simples. Para o front-end foi utilizado o framework Angular v19.2.6 e Node v22.11.
+A aplicação está toda dockerizada e com o banco de dados populado para facilitar o teste. Siga as instruções abaixo
+para testar.
+
+## 🧠 Observações
+
+- É necessário ter o **Docker** e o **Docker Compose** instalados.
+- As variáveis de ambiente são configuradas automaticamente pelos containers.
+- O arquivo `Insomnia.yaml` foi adicionado para fins de teste, se for necessário.
 
 ## 🐳 Rodando o projeto com Docker
 
@@ -85,11 +95,4 @@ Isso irá:
 | DELETE | `/admins/{id}`   | Remove admin por ID   |
 
 ---
-
-## 🧠 Observações
-
-- É necessário ter o **Docker** e o **Docker Compose** instalados.
-- As variáveis de ambiente são configuradas automaticamente pelos containers.
-- O banco já está populado.
-- O arquivo `Insomnia.yaml` foi adicionado para fins de teste, se for necessário.
 
