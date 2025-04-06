@@ -1,19 +1,39 @@
 .custom-list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 16px;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .student-info {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex: 1;
-  }
-  
-  button[mat-icon-button] {
-    flex-shrink: 0;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.student-info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+button[mat-icon-button] {
+  flex-shrink: 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0 8px;
+}
+
+.course-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}

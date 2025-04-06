@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CourseService } from '../../services/course.service';
 import { Course, User } from '../../models/models.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-course-dialog',
@@ -34,7 +35,7 @@ export class RegisterCourseDialogComponent {
     users: [] as User[]
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Course | null) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Course | null, private router: Router) {
     if (data) {
       this.course = { ...data };
     }
@@ -42,21 +43,33 @@ export class RegisterCourseDialogComponent {
 
   register() {
     if (
-      !this.course.name?.trim() ||
-      !this.course.description?.trim() ||
+      !this.course.name ||
+      !this.course.description ||
       this.course.durationInHours <= 0
     ) {
       alert('Preencha nome, descrição e duração (maior que 0)!');
       return;
     }
-    
-    this.courseService.createCourse(this.course).subscribe({
-      next: (res) => {
+  
+    const isEdit = !!this.data;
+  
+    const observable = isEdit
+      ? this.courseService.updateCourse(this.course.courseId, this.course)
+      : this.courseService.createCourse(this.course);
+  
+    observable.subscribe({
+      next: () => {
         this.dialogRef.close(true);
+
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.router.url + "/dashboard"]);
+        });
       },
-        error: (err) => console.error('Erro ao criar curso:', err)
-      });
-    }
+      error: (err) => {
+        console.error(isEdit ? 'Erro ao atualizar curso:' : 'Erro ao criar curso:', err);
+      }
+    });
+  }
 
   cancelar() {
     this.dialogRef.close();

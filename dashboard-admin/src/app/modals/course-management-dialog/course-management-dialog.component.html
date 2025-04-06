@@ -1,10 +1,20 @@
 <h2 mat-dialog-title>{{ course.name }}</h2>
 
 <mat-dialog-content>
+
   <p><strong>Descrição:</strong> {{ course.description }}</p>
   <p><strong>Duração:</strong> {{ course.durationInHours }} horas</p>
 
-  <div class="section-header">
+  <div class="course-actions" style="display: flex; gap: 8px; margin-bottom: 16px;">
+    <button mat-icon-button color="primary" (click)="editCourse(course)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="deleteCourse(course)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <div class="section-header" style="display: flex; align-items: center; justify-content: space-between;">
     <h3>Alunos matriculados</h3>
     <button mat-mini-fab color="primary" (click)="openStudentEnrollDialog()">
       <mat-icon>person_add</mat-icon>
@@ -14,14 +24,14 @@
   <mat-list>
     <div class="custom-list-item" *ngFor="let student of course.users">
       <div class="student-info">
-        <p>{{ student.name }} - {{ student.email }}</p>
+        {{ student.name }} - {{ student.email }}
       </div>
       <button mat-icon-button color="warn" (click)="removeStudent(student)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-  </mat-list>
-  
+  </mat-list>  
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

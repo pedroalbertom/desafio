@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { RegisterCourseDialogComponent } from '../register-course-dialog/register-course-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-management-dialog',
@@ -32,7 +34,8 @@ export class CourseManagementDialogComponent {
     private dialogRef: MatDialogRef<CourseManagementDialogComponent>,
     private courseService: CourseService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router // ✅ Adicionado o Router
   ) {
     this.course = data.course;
   }
@@ -49,7 +52,41 @@ export class CourseManagementDialogComponent {
       }
     });
   }
-  
+
+  editCourse(course: Course) {
+    const dialogRef = this.dialog.open(RegisterCourseDialogComponent, {
+      data: course
+    });
+
+    dialogRef.afterClosed().subscribe((result: Course | null) => {
+      if (result) {
+        this.courseService.updateCourse(course.courseId, result).subscribe({
+          next: () => {
+            this.snackBar.open('Curso atualizado com sucesso!', 'Fechar', { duration: 3000 });
+            this.dialogRef.close(true);
+          },
+          error: (err) => {
+            console.error('Erro ao atualizar curso:', err);
+            this.snackBar.open('Erro ao atualizar curso.', 'Fechar', { duration: 3000 });
+          }
+        });
+      }
+    });
+  }
+
+  deleteCourse(course: Course) {
+    if (confirm(`Tem certeza que deseja remover ${course.name}?`)) {
+      this.courseService.deleteCourse(course.courseId).subscribe({
+        next: () => {
+          this.dialogRef.close(true);
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([this.router.url + "/dashboard"]);
+          });
+        },
+        error: (err) => console.error('Erro ao deletar curso:', err)
+      });
+    }
+  }
 
   openStudentEnrollDialog(): void {
     this.dialog.open(EnrollStudentDialogComponent, {

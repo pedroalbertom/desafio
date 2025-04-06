@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>
-    Editar Curso
+  {{ course.courseId ? 'Editar curso' : 'Registrar novo curso' }}
   </h2>
   
   <mat-dialog-content>
@@ -24,7 +24,7 @@
         Cancelar
     </button>
     <button mat-raised-button color="primary" (click)="register()">
-      Salvar
+      {{ course.courseId ? 'Salvar' : 'Registrar' }}
     </button>
   </mat-dialog-actions>
   
