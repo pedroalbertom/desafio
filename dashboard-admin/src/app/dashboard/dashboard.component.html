@@ -1,34 +1,36 @@
-<div class="page-container">
-  <h2>Bem-vindo, {{ adminName }}!</h2>
-
-  <div class="action-buttons">
-    <button mat-raised-button color="primary" (click)="openStudentManagementModal()">
-      Gerenciar Alunos
+<div class="wrapper">
+  <div class="page-container">
+    <h2>Bem-vindo, {{ adminName }}!</h2>
+  
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openStudentManagementModal()">
+        Gerenciar Alunos
+      </button>
+  
+      <button mat-raised-button color="primary" (click)="openAdminManagementModal()">
+        Gerenciar Admins
+      </button>
+  
+      <button mat-raised-button color="warn" (click)="logoutButton()">
+        Sair
+      </button>
+    </div>
+  
+    <h3>Cursos disponíveis:</h3>
+  
+    <button mat-raised-button color="primary" (click)="openRegisterCourseModal()">
+      Adicionar Cursos
     </button>
-
-    <button mat-raised-button color="primary" (click)="openAdminManagementModal()">
-      Gerenciar Admins
-    </button>
-
-    <button mat-raised-button color="warn" (click)="logoutButton()">
-      Sair
-    </button>
-  </div>
-
-  <h3>Cursos disponíveis:</h3>
-
-  <button mat-raised-button color="primary" (click)="openRegisterCourseModal()">
-    Adicionar Cursos
-  </button>
-
-  <div class="courses-container">
-    <mat-card *ngFor="let course of courses" class="course-card" (click)="openCourseManagementModal(course)" style="cursor: pointer;">
-      <mat-card-header>
-        <mat-card-title>{{ course.name }}</mat-card-title>
-        <mat-card-subtitle>
-          {{ course.durationInHours }}h - {{ course.description }}
-        </mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+  
+    <div class="courses-container">
+      <mat-card *ngFor="let course of courses" class="course-card" (click)="openCourseManagementModal(course)" style="cursor: pointer;">
+        <mat-card-header>
+          <mat-card-title>{{ course.name }}</mat-card-title>
+          <mat-card-subtitle>
+            {{ course.durationInHours }}h - {{ course.description }}
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
   </div>
 </div>
