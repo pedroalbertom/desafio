@@ -8,7 +8,7 @@ para testar.
 
 ## 🧠 Observações
 
-- É necessário ter o **Docker** e o **Docker Compose** instalados.
+- É necessário ter o **Docker**, o **Docker Compose** e o **Maven** instalados.
 - As variáveis de ambiente são configuradas automaticamente pelos containers.
 - O arquivo `Insomnia.yaml` foi adicionado para fins de teste, se for necessário.
 
