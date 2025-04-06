@@ -45,6 +45,12 @@ export class RegisterAdminDialogComponent {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.admin.email)) {
+      alert('E-mail inválido');
+      return;
+    }
+
     this.adminService.createAdmin(this.admin).subscribe({
       next: (res) => {
         console.log('Admin criado:', res);

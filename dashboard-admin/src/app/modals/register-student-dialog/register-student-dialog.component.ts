@@ -45,6 +45,12 @@ export class RegisterStudentDialogComponent {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.student.email)) {
+      alert('E-mail inválido');
+      return;
+    }
+
     if (this.student.userId) {
       // Edição
       this.userService.updateUser(this.student.userId, this.student).subscribe({

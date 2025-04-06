@@ -42,6 +42,6 @@ export class CourseService {
 
   // Remove um usuário de um curso
   unassignCourseFromUser(userId: string): Observable<void> {
-    return this.http.put<void>(`${this.userUrl}/${userId}/courses/unnasign`, {});
+    return this.http.put<void>(`${this.userUrl}/${userId}/courses/unassign`, {});
   }
 }

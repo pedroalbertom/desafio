@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
@@ -34,7 +34,7 @@ export class EnrollStudentDialogComponent implements OnInit {
   private courseService = inject(CourseService);
   private snackBar = inject(MatSnackBar);
   private dialogRef = inject(MatDialogRef<EnrollStudentDialogComponent>);
-  @Inject(MAT_DIALOG_DATA) public data!: { courseId: string };
+  private data = inject(MAT_DIALOG_DATA) as { courseId: string };
 
   students: User[] = [];
 

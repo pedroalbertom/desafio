@@ -35,22 +35,24 @@ export class CourseManagementDialogComponent {
     private courseService: CourseService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private router: Router // ✅ Adicionado o Router
+    private router: Router
   ) {
     this.course = data.course;
   }
 
   removeStudent(student: User): void {
-    this.courseService.unassignCourseFromUser(student.userId).subscribe({
-      next: () => {
-        this.course.users = this.course.users.filter(u => u.userId !== student.userId);
-        this.snackBar.open('Aluno removido com sucesso!', 'Fechar', { duration: 3000 });
-      },
-      error: (err) => {
-        console.error('Erro ao remover aluno:', err);
-        this.snackBar.open('Erro ao remover aluno.', 'Fechar', { duration: 3000 });
-      }
-    });
+    if (confirm(`Tem certeza que deseja remover ${student.name}?`)) {
+      this.courseService.unassignCourseFromUser(student.userId).subscribe({
+        next: () => {
+          this.course.users = this.course.users.filter(u => u.userId !== student.userId);
+          this.snackBar.open('Aluno removido com sucesso!', 'Fechar', { duration: 3000 });
+        },
+        error: (err) => {
+          console.error('Erro ao remover aluno:', err);
+          this.snackBar.open('Erro ao remover aluno.', 'Fechar', { duration: 3000 });
+        }
+      });
+    }
   }
 
   editCourse(course: Course) {
@@ -88,9 +90,19 @@ export class CourseManagementDialogComponent {
     }
   }
 
-  openStudentEnrollDialog(): void {
-    this.dialog.open(EnrollStudentDialogComponent, {
+  openStudentEnrollDialog() {
+    const dialogRef = this.dialog.open(EnrollStudentDialogComponent, {
       data: { courseId: this.course.courseId }
     });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.courseService.getCourseById(this.course.courseId).subscribe(course => {
+          this.course = course;
+        });
+      }
+    });
   }
+  
+  
 }
