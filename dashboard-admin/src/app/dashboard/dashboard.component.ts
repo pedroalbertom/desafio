@@ -7,7 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { StudentManagementDialogComponent } from '../modals/student-management-dialog/student-management-dialog.component';
-
+import { Router } from '@angular/router';
+import { AdminManagementDialogComponent } from '../modals/admin-management-dialog/admin-management-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,7 +30,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private courseService: CourseService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -51,5 +53,15 @@ export class DashboardComponent implements OnInit {
       height: '80vh'
     });
   }
-  
+
+  openAdminManagementModal() {
+    this.dialog.open(AdminManagementDialogComponent, {
+      width: '700px',
+      height: '80vh'
+    });
+  }
+
+  logoutButton() {
+    this.router.navigate(['/logout']);
+  }
 }

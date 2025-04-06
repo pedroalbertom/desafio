@@ -1,22 +1,43 @@
-/* Centraliza o conteúdo da página */
 .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  text-align: center;
 }
 
-/* Grade com 2 colunas fixas */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-buttons button {
+  width: 160px; 
+  height: 48px; 
+  font-size: 16px;
+  border-radius: 8px; 
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.action-buttons button:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
 .courses-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   margin-top: 1rem;
+  padding: 0 1rem;
 }
 
-/* Card com espaçamento */
 .course-card {
   padding: 1rem;
 }
