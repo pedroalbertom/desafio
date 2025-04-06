@@ -72,6 +72,8 @@ export class DashboardComponent implements OnInit {
   
 
   logoutButton() {
-    this.router.navigate(['/logout']);
+    if (confirm(`Tem certeza que deseja sair?`)) {
+      this.router.navigate(['/logout']);
+    }
   }
 }
