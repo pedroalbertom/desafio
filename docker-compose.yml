@@ -13,16 +13,16 @@ services:
     networks:
       - quarkus-net
 
-#  frontend:
-#    build:
-#      context: ./dashboard-admin
-#      dockerfile: Dockerfile
-#    ports:
-#      - "4200:80"
-#    depends_on:
-#      - app
-#    networks:
-#      - quarkus-net
+  frontend:
+    build:
+      context: ./dashboard-admin
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - app
+    networks:
+      - quarkus-net
 
   app:
     build:
