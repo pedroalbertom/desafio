@@ -1,1 +1,30 @@
-<p>register-course-dialog works!</p>
+<h2 mat-dialog-title>
+    Editar Curso
+  </h2>
+  
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="course.name" />
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Descrição</mat-label>
+      <input matInput [(ngModel)]="course.description" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Duração</mat-label>
+        <input matInput [(ngModel)]="course.durationInHours" />
+    </mat-form-field>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" class="full-width">
+    <button mat-button (click)="cancelar()">
+        Cancelar
+    </button>
+    <button mat-raised-button color="primary" (click)="register()">
+      Salvar
+    </button>
+  </mat-dialog-actions>
+  

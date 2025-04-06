@@ -10,6 +10,7 @@ import { StudentManagementDialogComponent } from '../modals/student-management-d
 import { Router } from '@angular/router';
 import { AdminManagementDialogComponent } from '../modals/admin-management-dialog/admin-management-dialog.component';
 import { CourseManagementDialogComponent } from '../modals/course-management-dialog/course-management-dialog.component';
+import { RegisterCourseDialogComponent } from '../modals/register-course-dialog/register-course-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -69,6 +70,15 @@ export class DashboardComponent implements OnInit {
       data: { course }
     });
   }
+
+  openRegisterCourseModal(course?: Course) {
+    this.dialog.open(RegisterCourseDialogComponent, {
+      width: '500px',
+      height: '50vh',
+      data: course || null
+    });
+  }
+  
   
 
   logoutButton() {

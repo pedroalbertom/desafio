@@ -1,54 +1,47 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { LoginResponse } from '../models/login-response.model';
-
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-login',
-  imports:[
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, 
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
+    MatDialogModule, 
     MatButtonModule,
+    MatCardModule
   ],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email = '';
   password = '';
+  loginErrorMessage = '';
 
   constructor(
-    private http: HttpClient,
-    private router: Router  
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   onSubmit() {
-    const payload = {
-      email: this.email,
-      password: this.password
-    };
-  
-    this.http.post<LoginResponse>('http://localhost:8080/admins/login', payload)
-      .subscribe({
-        next: (res) => {
-          localStorage.setItem('admin', JSON.stringify(res.admin));
-          this.router.navigate(['dashboard']);
-        },
-        error: (err) => {
-          console.error('Erro no login:', err);
-        }
-      });
+    this.authService.login(this.email, this.password).subscribe({
+      next: (admin) => {
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('Erro ao fazer login:', err);
+        this.loginErrorMessage = 'E-mail ou senha inválidos.';
+      }
+    });
   }
-  
 }
-
