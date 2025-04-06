@@ -29,7 +29,7 @@ public class SeedService {
     @Transactional
     void seedData() {
         if (UserEntity.count() == 0) {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 20; i++) {
                 UserEntity user = new UserEntity();
                 user.name = "Usuário " + i;
                 user.email = "usuario" + i + "@exemplo.com";
@@ -62,7 +62,7 @@ public class SeedService {
         List<CourseEntity> cursos = CourseEntity.listAll();
         List<UserEntity> users = UserEntity.listAll();
 
-        for (int i = 0; i < users.size(); i++) {
+        for (int i = 0; i < (users.size()/2); i++) {
             CourseEntity curso = cursos.get(i / 2); // 10 usuários, 5 cursos → 2 por curso
             userService.assignUserToCourse(users.get(i).userId, curso.courseId);
         }
