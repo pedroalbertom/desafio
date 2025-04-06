@@ -1,13 +1,19 @@
 <h2 mat-dialog-title>Selecionar aluno para matrícula</h2>
 
 <mat-dialog-content>
+  <div class="section-header">
+    <h3>Alunos disponíveis</h3>
+  </div>
+
   <mat-list>
-    <mat-list-item *ngFor="let student of students">
+    <div class="custom-list-item" *ngFor="let student of students">
       <div class="student-info">
         {{ student.name }} - {{ student.email }}
       </div>
-      <button mat-button color="primary" (click)="enrollStudent(student)">Matricular</button>
-    </mat-list-item>
+      <button mat-icon-button color="primary" (click)="enrollStudent(student)">
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
   </mat-list>
 
   <p *ngIf="students.length === 0">Nenhum aluno disponível para matrícula.</p>

@@ -7,6 +7,10 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from '../../services/user.service';
 import { CourseService } from '../../services/course.service';
 import { User } from '../../models/models.model';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-enroll-student-dialog',
@@ -15,10 +19,14 @@ import { User } from '../../models/models.model';
   styleUrls: ['./enroll-student-dialog.component.css'],
   imports: [
     CommonModule,
-    MatDialogModule,
-    MatListModule,
+    FormsModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule, 
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule,
+    MatIconModule,
   ]
 })
 export class EnrollStudentDialogComponent implements OnInit {
