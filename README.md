@@ -33,7 +33,7 @@ cd desafio
 ### 3. Builda o .jar em ./target
 
 ```bash
-mvn clean package
+mvn clean package -DskipTests
 ```
 
 ### 4. Suba os containers
@@ -49,13 +49,24 @@ Isso irá:
 
 ### 5. Acesse no navegador
 
-- Frontend: [http://localhost:4200](http://localhost:3000)
+- Frontend: [http://localhost:4200](http://localhost:4200)
 - Backend (API): [http://localhost:8080](http://localhost:8080)
 
   - para realizar login na dashboard:
   - e-mail: admin1@exemplo.com
   - password: admin
 
+### 6. Parando os containers
+
+Para parar e remover os containers:
+
+```bash
+CTRL + C
+```
+ou
+```bash
+docker-compose down
+```
 ---
 
 ## 📚 Rotas da API
