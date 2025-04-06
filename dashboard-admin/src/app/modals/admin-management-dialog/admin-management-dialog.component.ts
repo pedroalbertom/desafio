@@ -52,18 +52,6 @@ export class AdminManagementDialogComponent implements OnInit {
     });
   }
 
-  editAdmin(admin: Admin) {
-    const dialogRef = this.dialog.open(RegisterAdminDialogComponent, {
-      data: admin
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.loadAdmins();
-      }
-    });
-  }
-
   deleteAdmin(admin: Admin) {
     if (confirm(`Tem certeza que deseja remover ${admin.name}?`)) {
       this.adminService.deleteAdmin(admin.adminId).subscribe({

@@ -60,7 +60,7 @@ export class StudentManagementDialogComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.loadStudents(); // Atualiza lista após editar
+        this.loadStudents();
       }
     });
   }

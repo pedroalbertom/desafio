@@ -21,6 +21,7 @@ import { Admin } from '../../models/models.model';
     MatButtonModule
   ],
   templateUrl: './register-admin-dialog.component.html',
+  styleUrls: ['./register-admin-dialog.component.css']
 })
 export class RegisterAdminDialogComponent {
   private adminService = inject(AdminService);
@@ -45,23 +46,14 @@ export class RegisterAdminDialogComponent {
       return;
     }
 
-    if (this.admin.adminId) {
-      this.adminService.updateAdmin(this.admin.adminId, this.admin).subscribe({
-        next: (res) => {
-          console.log('Admin atualizado:', res);
-          this.dialogRef.close(true);
-        },
-        error: (err) => console.error('Erro ao atualizar admin:', err)
-      });
-    } else {
-      this.adminService.createAdmin(this.admin).subscribe({
-        next: (res) => {
-          console.log('Admin criado:', res);
-          this.dialogRef.close(true);
-        },
-        error: (err) => console.error('Erro ao criar admin:', err)
-      });
-    }
+    this.adminService.createAdmin(this.admin).subscribe({
+      next: (res) => {
+        console.log('Admin criado:', res);
+        this.dialogRef.close(true);
+      },
+      error: (err) => console.error('Erro ao criar admin:', err)
+    });
+    
   }
 
   cancelar() {

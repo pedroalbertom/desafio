@@ -21,6 +21,7 @@ import { User } from '../../models/models.model';
     MatButtonModule
   ],
   templateUrl: './register-student-dialog.component.html',
+  styleUrls: ['./register-student-dialog.component.css']
 })
 export class RegisterStudentDialogComponent {
   private userService = inject(UserService);

@@ -1,1 +1,28 @@
-<p>register-admin-dialog works!</p>
+<h2 mat-dialog-title>
+    {{ admin.adminId ? 'Editar admin' : 'Registrar novo admin' }}
+  </h2>
+  
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="admin.name" />
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="admin.email" type="email" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput [(ngModel)]="admin.password" type="password" />
+    </mat-form-field>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" class="full-width">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="register()">
+      {{ admin.adminId ? 'Salvar' : 'Registrar' }}
+    </button>
+  </mat-dialog-actions>
+  
