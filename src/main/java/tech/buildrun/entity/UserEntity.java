@@ -30,4 +30,11 @@ public class UserEntity extends PanacheEntityBase {
         return result;
     }
 
+    public static void unassignAllUsersFromCourse(CourseEntity course) {
+        List<UserEntity> users = find("course = ?1", course).list();
+        for (UserEntity user : users) {
+            user.course = null;
+        }
+    }
+
 }

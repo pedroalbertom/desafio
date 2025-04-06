@@ -1,9 +1,11 @@
 package tech.buildrun.services;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
 import tech.buildrun.dto.CourseDTO;
 import tech.buildrun.entity.CourseEntity;
+import tech.buildrun.entity.UserEntity;
 import tech.buildrun.mapper.CourseMapper;
 
 import java.util.List;
@@ -11,8 +13,16 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 @ApplicationScoped
 public class CourseService {
+    private final UserService userService;
+
+    @jakarta.inject.Inject
+    public CourseService(UserService userService) {
+        this.userService = userService;
+    }
+
     public CourseDTO createCourse(CourseDTO courseDTO) {
         CourseEntity entity = CourseMapper.toEntity(courseDTO);
         CourseEntity.persist(entity);
@@ -51,8 +61,12 @@ public class CourseService {
         return courseOptional.get();
     }
 
+    @Transactional
     public void deleteById(UUID courseId) {
         var course = findByIdEntity(courseId);
+
+        UserEntity.unassignAllUsersFromCourse(course);
+
         CourseEntity.deleteById(course.courseId);
     }
 }
