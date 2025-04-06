@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Course } from '../../models/models.model';
+import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
-import { User } from '../../models/models.model';
+import { User } from '../../models/user.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EnrollStudentDialogComponent } from '../enroll-student-dialog/enroll-student-dialog.component';
 import { CommonModule } from '@angular/common';

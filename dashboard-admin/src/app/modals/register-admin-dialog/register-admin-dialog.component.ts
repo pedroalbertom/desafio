@@ -5,9 +5,8 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
 import { AdminService } from '../../services/admin.service';
-import { Admin } from '../../models/models.model';
+import { Admin } from '../../models/admin.model';
 
 @Component({
   selector: 'app-register-admin-dialog',

@@ -6,7 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { Admin } from '../../models/models.model';
+import { Admin } from '../../models/admin.model';
 import { RegisterAdminDialogComponent } from '../register-admin-dialog/register-admin-dialog.component';
 import { AdminService } from '../../services/admin.service';
 

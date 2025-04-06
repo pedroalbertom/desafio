@@ -5,9 +5,8 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/models.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-register-student-dialog',

@@ -6,9 +6,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/models.model';
+import { User } from '../../models/user.model';
 import { RegisterStudentDialogComponent } from '../register-student-dialog/register-student-dialog.component';
 
 @Component({

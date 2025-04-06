@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from '../../services/user.service';
 import { CourseService } from '../../services/course.service';
-import { User } from '../../models/models.model';
+import { User } from '../../models/user.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';

@@ -6,8 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CourseService } from '../../services/course.service';
-import { Course, User } from '../../models/models.model';
+import { Course } from '../../models/course.model';
 import { Router } from '@angular/router';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-register-course-dialog',
