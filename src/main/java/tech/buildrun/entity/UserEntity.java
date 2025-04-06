@@ -26,7 +26,8 @@ public class UserEntity extends PanacheEntityBase {
     public CourseEntity course;
 
     public static List<UserEntity> findUsersWithoutCourses() {
-        return find("courseId IS NULL").list();
+        List<UserEntity> result = find("course IS NULL").list();
+        return result;
     }
 
 }
