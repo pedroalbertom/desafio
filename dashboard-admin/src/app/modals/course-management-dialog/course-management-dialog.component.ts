@@ -4,6 +4,7 @@ import { Course } from '../../models/models.model';
 import { CourseService } from '../../services/course.service';
 import { User } from '../../models/models.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EnrollStudentDialogComponent } from '../enroll-student-dialog/enroll-student-dialog.component';
 
 @Component({
   selector: 'app-course-management-dialog',
@@ -33,6 +34,13 @@ export class CourseManagementDialogComponent {
         console.error('Erro ao remover aluno:', err);
         this.snackBar.open('Erro ao remover aluno.', 'Fechar', { duration: 3000 });
       }
+    });
+  }
+  
+
+  openStudentEnrollDialog(): void {
+    this.dialog.open(EnrollStudentDialogComponent, {
+      data: { courseId: this.course.courseId }
     });
   }
 }
