@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { StudentManagementDialogComponent } from '../modals/student-management-dialog/student-management-dialog.component';
 import { Router } from '@angular/router';
 import { AdminManagementDialogComponent } from '../modals/admin-management-dialog/admin-management-dialog.component';
+import { CourseManagementDialogComponent } from '../modals/course-management-dialog/course-management-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -60,6 +61,15 @@ export class DashboardComponent implements OnInit {
       height: '80vh'
     });
   }
+
+  openCourseManagementModal(course: Course) {
+    this.dialog.open(CourseManagementDialogComponent, {
+      width: '700px',
+      height: '80vh',
+      data: { course }
+    });
+  }
+  
 
   logoutButton() {
     this.router.navigate(['/logout']);

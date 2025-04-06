@@ -1,1 +1,18 @@
-<p>enroll-student-dialog works!</p>
+<h2 mat-dialog-title>Selecionar aluno para matrícula</h2>
+
+<mat-dialog-content>
+  <mat-list>
+    <mat-list-item *ngFor="let student of students">
+      <div class="student-info">
+        {{ student.name }} - {{ student.email }}
+      </div>
+      <button mat-button color="primary" (click)="enrollStudent(student)">Matricular</button>
+    </mat-list-item>
+  </mat-list>
+
+  <p *ngIf="students.length === 0">Nenhum aluno disponível para matrícula.</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

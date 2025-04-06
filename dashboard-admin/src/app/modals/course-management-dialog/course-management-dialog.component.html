@@ -12,15 +12,16 @@
   </div>
 
   <mat-list>
-    <mat-list-item *ngFor="let student of course.users">
+    <div class="custom-list-item" *ngFor="let student of course.users">
       <div class="student-info">
         <p>{{ student.name }} - {{ student.email }}</p>
       </div>
       <button mat-icon-button color="warn" (click)="removeStudent(student)">
         <mat-icon>delete</mat-icon>
       </button>
-    </mat-list-item>
+    </div>
   </mat-list>
+  
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
