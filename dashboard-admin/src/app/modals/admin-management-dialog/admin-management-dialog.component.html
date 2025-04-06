@@ -1,1 +1,37 @@
-<p>admin-management-dialog works!</p>
+<h2 mat-dialog-title>Gerenciar Admins</h2>
+<mat-dialog-content>
+
+  <button mat-raised-button color="primary" (click)="openAddAdminForm()">Novo admin</button>
+
+  <table mat-table [dataSource]="admins">
+    <!-- Colunas: Nome, Email, Ações -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let admin">{{ admin.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let admin">{{ admin.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let admin">
+        <button mat-icon-button (click)="editAdmin(admin)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteAdmin(admin)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['name', 'email', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'email', 'actions']"></tr>
+  </table>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>
