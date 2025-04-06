@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { UserService } from '../../../core/services/user.service';
-import { User } from '../../../models/models.model';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/models.model';
 import { RegisterStudentDialogComponent } from '../register-student-dialog/register-student-dialog.component';
 
 @Component({

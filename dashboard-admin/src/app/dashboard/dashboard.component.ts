@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../core/services/auth.service';
-import { CourseService } from '../../core/services/course.service';
-import { Course } from '../../models/models.model';
+import { AuthService } from '../services/auth.service';
+import { CourseService } from '../services/course.service';
+import { Course } from '../models/models.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { StudentManagementDialogComponent } from '../../shared/modals/student-management-dialog/student-management-dialog.component';
+import { StudentManagementDialogComponent } from '../modals/student-management-dialog/student-management-dialog.component';
 
 
 @Component({

@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
-import { UserService } from '../../../core/services/user.service';
-import { User } from '../../../models/models.model';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/models.model';
 
 @Component({
   selector: 'app-register-student-dialog',

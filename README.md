@@ -42,6 +42,10 @@ Isso irá:
 - Frontend: [http://localhost:4200](http://localhost:3000)
 - Backend (API): [http://localhost:8080](http://localhost:8080)
 
+  - para realizar login na dashboard:
+  - e-mail: admin1@exemplo.com
+  - password: admin
+
 ---
 
 ## 📚 Rotas da API

@@ -7,11 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { LoginResponse } from '../../../models/login-response.model';
+import { LoginResponse } from '../models/login-response.model';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-login',
   imports:[
     CommonModule,
     FormsModule,
@@ -20,10 +20,10 @@ import { LoginResponse } from '../../../models/login-response.model';
     MatCardModule,
     MatButtonModule,
   ],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class HomeComponent {
+export class LoginComponent {
   email = '';
   password = '';
 
