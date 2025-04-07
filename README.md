@@ -4,7 +4,9 @@ Esse repositório foi criado para participar de um desafio técnico de uma vaga 
 utilizada foi Java v21.0.6 e Maven v3.9.9, utilizando o framework quarkus v3.21.1 para a api, com hibernate e usando active record 
 pattern por ser uma api mais simples. Para o front-end foi utilizado o framework Angular v19.2.6 e Node v22.11.
 A aplicação está toda dockerizada e com o banco de dados populado para facilitar o teste. Siga as instruções abaixo
-para testar.
+para testar. Por falta de especificação a respeito da relação entre aluno e curso, eu optei por fazer a relação de curso has many alunos.
+
+
 
 ## 🧠 Observações
 
